@@ -1,6 +1,12 @@
 from django.urls import path, include
 
 app_configs = [
+	{ 'app_name': 'Models.Accounts', 'url': 'Models/Accounts/', 'namespace': 'Accounts' },
+
+	{ 'app_name': 'Models.Transactions', 'url': 'Models/Transactions/', 'namespace': 'Transactions' },
+
+	{ 'app_name': 'Models.Users', 'url': 'Models/Users/', 'namespace': 'Users' },
+
     # { "app_name": "finances.payments", "url": "finances/payments", "namespace": "payments" },
 ]
 
