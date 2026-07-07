@@ -10,6 +10,7 @@ dependencies = [
     "django-cotton>=2.7.2",
     "django-environ>=0.14.0",
     "django-htmx>=1.27.0",
+    "django-ninja>=1.6.2",
     "django-storages[azure]>=1.14.6",
     "django-widget-tweaks>=1.5.1",
     "djangosetupheist>=0.6.3",
