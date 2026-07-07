@@ -1,26 +1,28 @@
-import uuid
+from datetime import datetime
+from typing import override
+from okane.BaseModel import BaseModel
 from django.db import models
 
-
-class TransactionTypes(models.TextChoices):
-    INCOME = '+', _('Income')
-    EXPENSE = '-', _('Expense')
-    TRANSFER = '=', _('Transfer')
+from django.utils.translation import gettext_lazy as _
 
 
-class Transaction(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+TransactionTypes = models.TextChoices('TransactionTypes', [
+    ('INCOME', ('+', _('Income'))),
+    ('EXPENSE', ('-', _('Expense'))),
+    ('TRANSFER', ('=', _('Transfer'))),
+])
 
-    posted_at = models.DateTimeField(db_index=True)
-    description = models.CharField(max_length=255)
-    type = models.CharField(
+
+class Transaction(BaseModel):
+    posted_at: models.DateTimeField[datetime, datetime] = models.DateTimeField(db_index=True)
+    description: models.CharField[str, str] = models.CharField(max_length=255)
+    type: models.CharField[str, str] = models.CharField(
             max_length=1, 
             choices=TransactionTypes.choices,
             default=TransactionTypes.EXPENSE
         )
-    
-    created = models.DateTimeField(auto_now_add=True)
 
-    def _str_(self):
-        return f"{self.description} ({self.get_type_display()})"
+    @override
+    def __str__(self):
+        return f"{self.type} {self.description}"
 
