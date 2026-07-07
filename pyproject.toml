@@ -12,6 +12,7 @@ dependencies = [
     "django-htmx>=1.27.0",
     "django-ninja>=1.6.2",
     "django-storages[azure]>=1.14.6",
+    "django-stubs>=6.0.6",
     "django-widget-tweaks>=1.5.1",
     "djangosetupheist>=0.6.3",
     "psycopg2-binary>=2.9.12",
