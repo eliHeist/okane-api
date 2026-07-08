@@ -1,3 +1,6 @@
-from .UserSchema import UserCreate, UserUpdate, UserRead
+from .UserSchema import (
+    UserCreate, UserUpdate, UserRead,
+    LoginSchema, ChangePasswordSchema,
+)
 
-__all__ = ['UserCreate', 'UserUpdate', 'UserRead']
+__all__ = ['UserCreate', 'UserUpdate', 'UserRead', 'LoginSchema', 'ChangePasswordSchema']

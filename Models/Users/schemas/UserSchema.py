@@ -14,7 +14,7 @@ class UserCreate(Schema):
 
 class UserUpdate(Schema):
     """Schema for updating a User"""
-    email: EmailStr
+    email: EmailStr | None = None
     first_name: str | None = None
     last_name: str | None = None
     username: str | None = None
@@ -32,3 +32,21 @@ class UserRead(Schema):
     created_at: datetime
     updated_at: datetime
 
+
+class LoginSchema(Schema):
+    email: EmailStr
+    password: str
+
+
+class PasswordResetRequestSchema(Schema):
+    email: EmailStr | None
+    username: str | None
+
+class PasswordResetValidateSchema(Schema):
+    uidb64: str
+    token: str
+
+class PasswordResetConfirmSchema(Schema):
+    uidb64: str
+    token: str
+    new_password: str

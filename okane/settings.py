@@ -138,6 +138,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'okane/assets/media')
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+AUTH_USER_MODEL = "Models.Users.User"
+
 # Email settings
 EMAIL_BACKEND = env('EMAIL_BACKEND')
 EMAIL_HOST = env('EMAIL_HOST')

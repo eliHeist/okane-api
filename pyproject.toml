@@ -16,4 +16,5 @@ dependencies = [
     "django-widget-tweaks>=1.5.1",
     "djangosetupheist>=0.6.3",
     "psycopg2-binary>=2.9.12",
+    "uvicorn>=0.50.2",
 ]
