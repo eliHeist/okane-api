@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+@source "../../../../";
+
+
+@theme {
+    --font-display: "Inter Tight", sans-serif;
+
+    --color-accent: #CA3C25;
+    --color-primary: #45140D;
+    --color-black: #1D1A05;
+    --color-white: #F5EFED;
+    --color-border: #E9DCD8;
+    --color-card: #F1E7E4;
+}
+
+:root {
+    font-family: var(--font-display);
+    color: var(--color-black);
+    background-color: var(--color-white);
+}
+
+.htmx-indicator{
+    display:none;
+}
+.htmx-request .htmx-indicator{
+    display:grid;
+}
+.htmx-request.htmx-indicator{
+    display:grid;
+}
+
+[x-cloak]{
+    display: none;
+}

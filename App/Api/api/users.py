@@ -1,6 +1,6 @@
 from ninja import Router
 from django.http import HttpRequest
-from django.contrib.auth import aauthenticate, alogin, alogout, aget_user, login as django_login, logout as django_logout, get_user_model
+from django.contrib.auth import aauthenticate, alogin, alogout, aget_user, get_user_model
 from asgiref.sync import sync_to_async
 from django.contrib.auth.tokens import default_token_generator
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode

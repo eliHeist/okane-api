@@ -1,6 +1,8 @@
 from django.urls import path, include
 
 app_configs = [
+	{ 'app_name': 'App.Client', 'url': 'App/Client/', 'namespace': 'Client' },
+
 	{ 'app_name': 'App.Api', 'url': 'App/Api/', 'namespace': 'Api' },
 
 	{ 'app_name': 'Models.Accounts', 'url': 'Models/Accounts/', 'namespace': 'Accounts' },
