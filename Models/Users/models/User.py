@@ -1,3 +1,6 @@
+from datetime import datetime
+from typing import override
+
 from django.db import models
 from django.contrib.auth.models import (
     BaseUserManager,
@@ -70,29 +73,29 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    first_name = models.CharField(max_length=25, null=True, blank=True)
-    last_name = models.CharField(max_length=25, null=True, blank=True)
-    username = models.CharField(max_length=25, unique=True, null=True, blank=True)
-    email = models.EmailField(verbose_name='Email address', max_length=255, unique=True)
-    is_active = models.BooleanField(default=True)
-    is_admin = models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    first_name: models.CharField[str | None, str] = models.CharField(max_length=25, null=True, blank=True)
+    last_name: models.CharField[str | None, str] = models.CharField(max_length=25, null=True, blank=True)
+    username: models.CharField[str | None, str] = models.CharField(max_length=25, unique=True, null=True, blank=True)
+    email: models.CharField[str | None, str] = models.EmailField(verbose_name='Email address', max_length=255, unique=True)
+    is_active: models.BooleanField[bool, bool] = models.BooleanField(default=True)
+    is_admin: models.BooleanField[bool, bool] = models.BooleanField(default=False)
+    created_at: models.DateTimeField[datetime, datetime] = models.DateTimeField(auto_now_add=True)
+    updated_at: models.DateTimeField[datetime, datetime] = models.DateTimeField(auto_now=True)
 
 
-    USERNAME_FIELD = 'email'
-    # REQUIRED_FIELDS = ['email']
+    USERNAME_FIELD: str = 'email'
 
     objects = UserManager()
-    
+
+    @override
     class Meta:
-        verbose_name = _("User")
-        verbose_name_plural = _("Users")
+        verbose_name: str = "User"
+        verbose_name_plural: str = "Users"
 
     def __str__(self):
         return self.username or self.email
 
-    def disable(self, using=None, keep_parents=False):
+    def disable(self, *args, **kwargs):
         self.is_active ^= True
         self.save()
 
