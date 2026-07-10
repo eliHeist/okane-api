@@ -1,0 +1,29 @@
+
+<c-layout.base>
+    <div class="h-screen grid items-center p-4">
+        <c-card>
+            <c-card.header>
+                <c-card.title>Welcome!</c-card.title>
+            </c-card.header>
+            <c-card.content>
+                <c-form>
+    
+                    <c-form.field>
+                        <c-form.label for='email'>Email</c-form.label>
+                        <c-input id='email' type='email' placeholder='Email'></c-input>
+                        <c-form.description>
+                            This will be your username.
+                        </c-form.description>
+                    </c-form.field>
+    
+                    <c-form.field>
+                        <c-form.label for='password'>Password</c-form.label>
+                        <c-input id='password' type='password' placeholder='Password'></c-input>
+                    </c-form.field>
+    
+                    <c-button type='submit' variant='accent' class="w-full">Sign in</c-button>
+                </c-form>
+            </c-card.content>
+        </c-card>
+    </div>
+</c-layout.base>

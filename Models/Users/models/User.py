@@ -11,7 +11,7 @@ from django.utils.translation import gettext_lazy as _
 
 
 # Create your models here.
-class UserManager(BaseUserManager):
+class UserManager(BaseUserManager):  # pyright: ignore[reportMissingTypeArgument]
     """Class to manage the creation of user objects"""
     
     def make_random_password(self, length=16):

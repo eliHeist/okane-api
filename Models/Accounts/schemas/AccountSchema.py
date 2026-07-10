@@ -3,17 +3,17 @@ from uuid import UUID
 from datetime import datetime
 
 
-class AccountCreate(BaseModel):
+class AccountCreate(Schema):
     """Schema for creating an Account"""
     name: str
 
 
-class AccountUpdate(BaseModel):
+class AccountUpdate(Schema):
     """Schema for updating an Account"""
     name: str
 
 
-class AccountRead(BaseModel):
+class AccountRead(Schema):
     """Schema for reading an Account"""
     id: UUID
     name: str

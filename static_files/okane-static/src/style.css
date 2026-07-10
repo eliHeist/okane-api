@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
 
-@source "../../../../";
+@source "../../../";
 
 
 @theme {
@@ -19,6 +19,7 @@
     font-family: var(--font-display);
     color: var(--color-black);
     background-color: var(--color-white);
+    border-color: var(--color-border);
 }
 
 .htmx-indicator{

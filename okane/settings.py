@@ -35,17 +35,23 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+
+    "django_htmx",
+    'django_cotton',
 ]
 INSTALLED_APPS += getAppNames()
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+
+    "django_htmx.middleware.HtmxMiddleware",
 ]
 
 ROOT_URLCONF = "okane.urls"
@@ -53,7 +59,7 @@ ROOT_URLCONF = "okane.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / 'okane/templates'],
+        "DIRS": [BASE_DIR / 'templates', BASE_DIR / 'App/Client/templates'],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -108,7 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Africa/Kampala"
 
 USE_I18N = True
 
@@ -126,9 +132,9 @@ CSRF_COOKIE_SECURE = True
 STATIC_URL = "static/"
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'okane/assets/static/'),
+    os.path.join(BASE_DIR, 'static_files/okane-static/dist'),
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'okane/assets/staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static_files/okane-static/staticfiles')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'okane/assets/media')
@@ -138,7 +144,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'okane/assets/media')
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-AUTH_USER_MODEL = "Models.Users.User"
+AUTH_USER_MODEL = "Users.User"
+
+LOGIN_URL = "auth_login"
 
 # Email settings
 EMAIL_BACKEND = env('EMAIL_BACKEND')

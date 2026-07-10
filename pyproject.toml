@@ -15,6 +15,9 @@ dependencies = [
     "django-stubs>=6.0.6",
     "django-widget-tweaks>=1.5.1",
     "djangosetupheist>=0.6.3",
+    "gunicorn>=26.0.0",
     "psycopg2-binary>=2.9.12",
     "uvicorn>=0.50.2",
+    "uvicorn-worker>=0.4.0",
+    "whitenoise>=6.12.0",
 ]
