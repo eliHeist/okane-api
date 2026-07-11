@@ -1,69 +1,80 @@
 from typing import Any, Sequence, override
 from django.views import View as DjangoView
-from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpRequest, HttpResponseBase
 from django_htmx.middleware import HtmxDetails
 from django.urls import reverse
 from django.utils import timezone
 from django.contrib.auth import get_user_model
 
-
 User = get_user_model()
+
 
 class HtmxHttpRequest(HttpRequest):
     htmx: HtmxDetails  # pyright: ignore[reportUninitializedInstanceVariable]
 
+
 def render_content(
-    request: HtmxHttpRequest,
-    template: str,
+    request: HtmxHttpRequest | HttpRequest,
+    template: str | Sequence[str],
     context: dict[str, Any] | None = None,
     as_is: bool = False,
     *args: Any,
     **kwargs: Any,
 ) -> HttpResponseBase:
-    if context is None:
-        context = {}
-
-    if request.htmx and not as_is:
-        template += "#partial"
-
+    context = context or {}
+    if getattr(request, "htmx", None) and not as_is:
+        template += "#partial" # pyright: ignore[reportOperatorIssue]
     return render(request, template, context, *args, **kwargs)
 
 
-class BaseView(
-    LoginRequiredMixin,
-    PermissionRequiredMixin,
-    DjangoView,
-):
+class AsyncLoginRequiredMixin:
+    login_url_name = "accounts:login"
+
+    async def ensure_authenticated(self, request: HtmxHttpRequest) -> HttpResponseBase | None:
+        user = await request.auser()
+        if user.is_authenticated:
+            self.user = user
+            return None
+
+        if getattr(request, "htmx", None):
+            response = HttpResponse(status=401)
+            response["HX-Redirect"] = reverse(self.login_url_name)
+            return response
+
+        return redirect(reverse(self.login_url_name))
+
+
+class AsyncPermissionRequiredMixin(AsyncLoginRequiredMixin):
     permission_required: str | None = None
+    permission_denied_message = "Insufficient permissions, contact your administrator."
+
+    async def ensure_permission(self, request: HtmxHttpRequest) -> HttpResponseBase | None:
+        denied = await self.ensure_authenticated(request)
+        if denied is not None:
+            return denied
+
+        if not self.permission_required:
+            return None
+
+        if not self.user.has_perm(self.permission_required): # pyright: ignore[reportAttributeAccessIssue]
+            if getattr(request, "htmx", None):
+                return HttpResponse("Forbidden", status=403)
+            return HttpResponse(self.permission_denied_message, status=403)
+
+        return None
+
+
+class BaseView(AsyncPermissionRequiredMixin, DjangoView):
     template_name: str | Sequence[str] = ""
 
     @override
     async def dispatch(self, request: HtmxHttpRequest, *args: Any, **kwargs: Any) -> HttpResponseBase: # pyright: ignore[reportIncompatibleMethodOverride]
-        if not request.user.is_authenticated:
-            return self.handle_no_permission()
-
-        self.request: HtmxHttpRequest = request  # pyright: ignore[reportIncompatibleVariableOverride]
-        self.user: User = request.user   # pyright: ignore[reportUninitializedInstanceVariable, reportAttributeAccessIssue]
-
-        self.permission_required = (
-            "None" if not self.permission_required else self.permission_required
-        )
-        self.permission_denied_message: Any = "Insufficient permissions, contact your administrator."
-
-        return await super().dispatch(request, *args, **kwargs)  # pyright: ignore[reportUnknownVariableType, reportGeneralTypeIssues]
-
-    @override
-    def has_permission(self) -> bool:
-        """
-        Override this method to customize the way permissions are checked.
-        """
-        return (
-            True
-            if self.permission_required == "None"
-            else super().has_permission()
-        )
+        self.request = request
+        denied = await self.ensure_permission(request)
+        if denied is not None:
+            return denied
+        return await super().dispatch(request, *args, **kwargs) # pyright: ignore[reportGeneralTypeIssues]
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         return {
@@ -80,36 +91,7 @@ class BaseView(
         context = self.get_context_data(**kwargs)
         if extra_context:
             context.update(extra_context)
-        return render_content(
-            self.request,
-            self.template_name or "",
-            context,
-            as_is=as_is,
-        )
+        return render_content(self.request, self.template_name or "", context, as_is=as_is)
 
     def today(self) -> Any:
         return timezone.now()
-
-    @override
-    def handle_no_permission(self) -> HttpResponseBase: # pyright: ignore[reportIncompatibleMethodOverride]
-        if not self.request.user.is_authenticated:
-            # User not logged in
-            if self.request.htmx:
-                response = HttpResponse(status=401)
-                response["HX-Redirect"] = reverse("accounts:login")
-                return response
-            return super(LoginRequiredMixin, self).handle_no_permission()
-
-        # User is logged in but lacks permission
-        if self.request.htmx:
-            return HttpResponse("Forbidden", status=403)
-        return super(PermissionRequiredMixin, self).handle_no_permission()
-
-    def has_perm(self, perm: str) -> bool:
-        """
-        Check if the current user has the given permission.
-        Returns True or False.
-        """
-        if not self.user.is_authenticated:
-            return False
-        return self.user.has_perm(perm)
