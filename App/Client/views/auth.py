@@ -4,14 +4,21 @@ from django.contrib.auth import aauthenticate, alogin, alogout, aget_user, get_u
 from django.shortcuts import redirect, render
 from django.conf import settings
 from django.views import View
+from django_htmx.http import retarget, reswap
 
-
+User = get_user_model()
 
 @app_urls.route('auth/login', name='auth_login')
 class LoginView(View):
     template_name = 'registration/login.html'
     async def get(self, request: HtmxHttpRequest):
-        return render(request, self.template_name, {'next': request.GET.get('next', '')})
+        context = {
+            "email": '',
+            "next": request.GET.get('next', ''),
+            "invalid_email_error": False,
+            "invalid_password_error": False,
+        }
+        return render(request, self.template_name, context  )
     
     async def post(self, request: HtmxHttpRequest):
         data = request.POST
@@ -19,9 +26,23 @@ class LoginView(View):
         email: str = data.get('email', '').strip()
         password: str = data.get('password', '')
         user = await aauthenticate(request=request, email=email, password=password)
+        context = {
+            "email": email,
+            "next": get_data.get('next', ''),
+            "invalid_email_error": False,
+            "invalid_password_error": False,
+        }
         if not user:
-            return {"error": "Invalid credentials"}, 401
-    
+            # return the template with error message and htmx reswap header
+            if not await User.objects.filter(email=email).aexists():
+                context['invalid_email_error'] = True
+            else:
+                context['invalid_password_error'] = True
+            if request.htmx:
+                self.template_name = self.template_name + '#form'
+            response = render(request, self.template_name, context)
+            return retarget(response, "#form")
+
         # create session
         await alogin(request, user)
 

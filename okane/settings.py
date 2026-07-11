@@ -147,6 +147,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "Users.User"
 
 LOGIN_URL = "auth_login"
+LOGIN_REDIRECT_URL = "landing"
 
 # Email settings
 EMAIL_BACKEND = env('EMAIL_BACKEND')

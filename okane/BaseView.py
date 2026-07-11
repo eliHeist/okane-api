@@ -1,4 +1,4 @@
-from typing import Any, override
+from typing import Any, Sequence, override
 from django.views import View as DjangoView
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.shortcuts import render
@@ -37,8 +37,7 @@ class BaseView(
     DjangoView,
 ):
     permission_required: str | None = None
-    template_name: str | None = None
-    permission_denied_message: str = ""
+    template_name: str | Sequence[str] = ""
 
     @override
     async def dispatch(self, request: HtmxHttpRequest, *args: Any, **kwargs: Any) -> HttpResponseBase: # pyright: ignore[reportIncompatibleMethodOverride]
