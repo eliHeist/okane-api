@@ -2,6 +2,7 @@ from datetime import datetime
 from typing import override
 from okane.BaseModel import BaseModel
 from django.db import models
+from Models.Users.models.User import User
 
 from django.utils.translation import gettext_lazy as _
 
@@ -21,6 +22,7 @@ class Transaction(BaseModel):
             choices=TransactionTypes.choices,
             default=TransactionTypes.EXPENSE
         )
+    owner: models.ForeignKey[User, User] = models.ForeignKey(User, on_delete=models.CASCADE)
 
     @override
     def __str__(self):
