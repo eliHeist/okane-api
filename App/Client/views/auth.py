@@ -1,3 +1,5 @@
+from django.http import HttpResponse
+
 from okane.registry import app_urls
 from okane.BaseView import BaseView, HtmxHttpRequest
 from django.contrib.auth import aauthenticate, alogin, alogout, aget_user, get_user_model
@@ -46,7 +48,11 @@ class LoginView(View):
         # create session
         await alogin(request, user)
 
-        next_route: str | None = get_data.get('next')
-        if next_route:
-            return redirect(next_route)
-        return redirect(settings.LOGIN_REDIRECT_URL)
+        next: str = get_data.get('next') # pyright: ignore[reportAssignmentType]
+        redirect_url = next if next else settings.LOGIN_REDIRECT_URL # pyright: ignore[reportAssignmentType]
+    
+        if request.htmx:
+            response = HttpResponse(status=204)
+            response["HX-Redirect"] = redirect_url # pyright: ignore[reportArgumentType]
+            return response
+        return redirect(redirect_url)
