@@ -7,12 +7,19 @@
 @theme {
     --font-display: "Inter Tight", sans-serif;
 
-    --color-accent: #CA3C25;
-    --color-primary: #45140D;
-    --color-black: #1D1A05;
-    --color-white: #F5EFED;
-    --color-border: #E9DCD8;
-    --color-card: #F1E7E4;
+    /* Brand Core */
+    --color-accent: #CA3C25;   /* Accent stays as-is */
+    --color-primary: #2C1A12;  /* Darker, richer primary for contrast */
+    --color-black: #0F0E0E;    /* True black for text emphasis */
+    --color-white: #F5EFED;    /* Soft off-white for backgrounds/text */
+    --color-border: #D6C7C2;   /* Neutral border with better contrast */
+    --color-card: #FFFFFF;     /* Clean white cards for modern feel */
+
+    /* Semantic Feedback */
+    --color-success: #2E7D32;  /* Deep green, readable on white */
+    --color-error: #D32F2F;    /* Strong red, pairs with white text */
+    --color-warning: #ED6C02;  /* Vivid orange for alerts */
+    --color-info: #0288D1;     /* Clear blue for informational states */
 }
 
 :root {
