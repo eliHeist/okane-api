@@ -8,13 +8,46 @@ importers:
 
   .:
     dependencies:
+      '@alpinejs/anchor':
+        specifier: ^3.15.12
+        version: 3.15.12
+      '@alpinejs/collapse':
+        specifier: ^3.15.12
+        version: 3.15.12
+      '@alpinejs/mask':
+        specifier: ^3.15.12
+        version: 3.15.12
       '@tailwindcss/vite':
         specifier: ^4.3.2
         version: 4.3.2(vite@8.1.3(jiti@2.7.0))
+      alpinejs:
+        specifier: ^3.15.12
+        version: 3.15.12
+      htmx-ext-response-targets:
+        specifier: ^2.0.4
+        version: 2.0.4
+      htmx.org:
+        specifier: ^2.0.10
+        version: 2.0.10
+      lucide:
+        specifier: ^1.24.0
+        version: 1.24.0
       tailwindcss:
         specifier: ^4.3.2
         version: 4.3.2
     devDependencies:
+      '@types/alpinejs':
+        specifier: ^3.13.11
+        version: 3.13.11
+      '@types/alpinejs__anchor':
+        specifier: ^3.13.1
+        version: 3.13.1
+      '@types/alpinejs__collapse':
+        specifier: ^3.13.4
+        version: 3.13.4
+      '@types/alpinejs__mask':
+        specifier: ^3.13.4
+        version: 3.13.4
       typescript:
         specifier: ~6.0.2
         version: 6.0.3
@@ -24,6 +57,15 @@ importers:
 
 packages:
 
+  '@alpinejs/anchor@3.15.12':
+    resolution: {integrity: sha512-8G9QGvWo9N+J16dEgbaXYIlxe8lWo25uNHhoAONZSDj1av+1VfIgU9FB4q+h6me0D/+7NqY+dw9OlIAAHQv4wg==}
+
+  '@alpinejs/collapse@3.15.12':
+    resolution: {integrity: sha512-BKNANLtNXuWYOSAnajSKLPjTsmHRNrv0ALFTbpmqt2/klHFooPhctSwkhFVPQb7rZ8BjEKHmNaBwnSbgtpk6xg==}
+
+  '@alpinejs/mask@3.15.12':
+    resolution: {integrity: sha512-FcOVQp+tsIiBeNwWsH1BjAhJa+R/b6Tv6sPfSMRZlp1e/4w4H44Kagd9Aq86xpFgeI5dibJil2TG0+3LqB4JoA==}
+
   '@emnapi/core@1.11.1':
     resolution: {integrity: sha512-RSvbQmHzdKzNsLYa/wHrbc3KN4sYLKAdPZxqiM2HATqv/SBk2/ENSHpvXGaLOMcsAyz0poEGqkmmKYG3OWiJEQ==}
 
@@ -32,6 +74,15 @@ packages:
 
   '@emnapi/wasi-threads@1.2.2':
     resolution: {integrity: sha512-c95qOXkHdydNKhscBTebqEC1CVAZpyqOfVfBzQ1qgzyl3gfeldUjIggDbIZgDKsHLgnsM+igH7TJ/eAasaVuMA==}
+
+  '@floating-ui/core@1.8.0':
+    resolution: {integrity: sha512-0CIZ5itps/8x7BG8dEIhs53BvCUH2PCoogtakwRTut+Arm58sJooJ0AuZhLw2HJYIR5cMLNPBSS728sPho2khQ==}
+
+  '@floating-ui/dom@1.8.0':
+    resolution: {integrity: sha512-yXSrzeHZBTZadLOlfyhCkJHNeLJnHRnRInwdZ40L7ZiaAtrBwoYlsDrX3v5zB1Utk7CLfzcOVnVVWoXEky7Ceg==}
+
+  '@floating-ui/utils@0.2.12':
+    resolution: {integrity: sha512-HpCo8tmWzLVad5s2d19EhAz5zqrrQ6s69qd6moPMQvkOuSwDT1YgRfWSVuc4ennqrgv3OHppiOGMQ7oC13yIww==}
 
   '@jridgewell/gen-mapping@0.3.13':
     resolution: {integrity: sha512-2kkt/7niJ6MgEPxF0bYdQ6etZaA+fQvDcLKckhy1yIQOzaoKjBBjSj63/aLVjYE3qhRt5dvM+uUyfCg6UKCBbA==}
@@ -253,6 +304,27 @@ packages:
   '@tybys/wasm-util@0.10.3':
     resolution: {integrity: sha512-F3fo1MYrRJYL3zER0OUOmkutjr1Vp23m7OsSgp7nq4SP6OqX6C/56XFIPAl5bt3zaBRjmW7SGz3u/6LwFpYcOg==}
 
+  '@types/alpinejs@3.13.11':
+    resolution: {integrity: sha512-3KhGkDixCPiLdL3Z/ok1GxHwLxEWqQOKJccgaQL01wc0EVM2tCTaqlC3NIedmxAXkVzt/V6VTM8qPgnOHKJ1MA==}
+
+  '@types/alpinejs__anchor@3.13.1':
+    resolution: {integrity: sha512-UyQ+qz456eshmbiMpyj8yX6YDP1Cyoget2EWMYHjFLFx4fw08/iDlaIyps97zfwTK26oIb6sAK67Lm7nsxZwzA==}
+
+  '@types/alpinejs__collapse@3.13.4':
+    resolution: {integrity: sha512-kUBJWEDrHahD2Tb1lrir7iNTGN9ukvoJFjOY41EGC7F21E1KMSch5NrGgE0sqINrRT3lf1UZm3wxB3CNjJHBwg==}
+
+  '@types/alpinejs__mask@3.13.4':
+    resolution: {integrity: sha512-NU1fDPJ1KvXFf9SzA4bxr9mIGS8BUkJqSjBExQOV4Xs3HmKzzlsCH2WSWzbbowZK9gVgU0UhN1vK8X/sgffJqQ==}
+
+  '@vue/reactivity@3.1.5':
+    resolution: {integrity: sha512-1tdfLmNjWG6t/CsPldh+foumYFo3cpyCHgBYQ34ylaMsJ+SNHQ1kApMIa8jN+i593zQuaw3AdWH0nJTARzCFhg==}
+
+  '@vue/shared@3.1.5':
+    resolution: {integrity: sha512-oJ4F3TnvpXaQwZJNF3ZK+kLPHKarDmJjJ6jyzVNDKH9md1dptjC7lWR//jrGuLdek/U6iltWxqAnYOu8gCiOvA==}
+
+  alpinejs@3.15.12:
+    resolution: {integrity: sha512-nJvPAQVNPdZZ0NrExJ/kzQco3ijR8LwvCOadQecllESiqT4NyZ/57sN9V2XyvhlBGAbmlKYgeWZvYdKq99ij/Q==}
+
   detect-libc@2.1.2:
     resolution: {integrity: sha512-Btj2BOOO83o3WyH59e8MgXsxEQVcarkUOpEYrubB0urwnN10yQ364rsiByU11nZlqWYZm05i/of7io4mzihBtQ==}
     engines: {node: '>=8'}
@@ -277,6 +349,12 @@ packages:
 
   graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
+
+  htmx-ext-response-targets@2.0.4:
+    resolution: {integrity: sha512-Q/yfH0N2A40j903mr6ldGV3qLWMQeufROylYIbYQLBGrCpmydflxXmQwDOEhEWdPnBTgiHofkAo0gQ3S1BmyxQ==}
+
+  htmx.org@2.0.10:
+    resolution: {integrity: sha512-kdeJe7ZVwaS6QMz/ebBIVtZdpwen6L0OQ5GOhPV9MKBb196TCZeZu4yA7ZIQsaLKv7EpXz+So7KSXNuHXhj7Cw==}
 
   jiti@2.7.0:
     resolution: {integrity: sha512-AC/7JofJvZGrrneWNaEnJeOLUx+JlGt7tNa0wZiRPT4MY1wmfKjt2+6O2p2uz2+skll8OZZmJMNqeke7kKbNgQ==}
@@ -355,6 +433,9 @@ packages:
   lightningcss@1.32.0:
     resolution: {integrity: sha512-NXYBzinNrblfraPGyrbPoD19C1h9lfI/1mzgWYvXUTe414Gz/X1FD2XBZSZM7rRTrMA8JL3OtAaGifrIKhQ5yQ==}
     engines: {node: '>= 12.0.0'}
+
+  lucide@1.24.0:
+    resolution: {integrity: sha512-oMAaeuNDc5VCnBb3IjwKYGRT56tqanUm1fyDFT5Tl8hWSZND59gztgjvXje08jKLPVAq0gHJcwZUE8GCQxzBeg==}
 
   magic-string@0.30.21:
     resolution: {integrity: sha512-vd2F4YUyEXKGcLHoq+TEyCjxueSeHnFxyyjNp80yg0XV4vUhnDer/lvvlqM/arB5bXQN5K2/3oinyCRyx8T2CQ==}
@@ -448,6 +529,14 @@ packages:
 
 snapshots:
 
+  '@alpinejs/anchor@3.15.12':
+    dependencies:
+      '@floating-ui/dom': 1.8.0
+
+  '@alpinejs/collapse@3.15.12': {}
+
+  '@alpinejs/mask@3.15.12': {}
+
   '@emnapi/core@1.11.1':
     dependencies:
       '@emnapi/wasi-threads': 1.2.2
@@ -463,6 +552,17 @@ snapshots:
     dependencies:
       tslib: 2.8.1
     optional: true
+
+  '@floating-ui/core@1.8.0':
+    dependencies:
+      '@floating-ui/utils': 0.2.12
+
+  '@floating-ui/dom@1.8.0':
+    dependencies:
+      '@floating-ui/core': 1.8.0
+      '@floating-ui/utils': 0.2.12
+
+  '@floating-ui/utils@0.2.12': {}
 
   '@jridgewell/gen-mapping@0.3.13':
     dependencies:
@@ -616,6 +716,30 @@ snapshots:
       tslib: 2.8.1
     optional: true
 
+  '@types/alpinejs@3.13.11': {}
+
+  '@types/alpinejs__anchor@3.13.1':
+    dependencies:
+      '@types/alpinejs': 3.13.11
+
+  '@types/alpinejs__collapse@3.13.4':
+    dependencies:
+      '@types/alpinejs': 3.13.11
+
+  '@types/alpinejs__mask@3.13.4':
+    dependencies:
+      '@types/alpinejs': 3.13.11
+
+  '@vue/reactivity@3.1.5':
+    dependencies:
+      '@vue/shared': 3.1.5
+
+  '@vue/shared@3.1.5': {}
+
+  alpinejs@3.15.12:
+    dependencies:
+      '@vue/reactivity': 3.1.5
+
   detect-libc@2.1.2: {}
 
   enhanced-resolve@5.21.6:
@@ -631,6 +755,12 @@ snapshots:
     optional: true
 
   graceful-fs@4.2.11: {}
+
+  htmx-ext-response-targets@2.0.4:
+    dependencies:
+      htmx.org: 2.0.10
+
+  htmx.org@2.0.10: {}
 
   jiti@2.7.0: {}
 
@@ -682,6 +812,8 @@ snapshots:
       lightningcss-linux-x64-musl: 1.32.0
       lightningcss-win32-arm64-msvc: 1.32.0
       lightningcss-win32-x64-msvc: 1.32.0
+
+  lucide@1.24.0: {}
 
   magic-string@0.30.21:
     dependencies:

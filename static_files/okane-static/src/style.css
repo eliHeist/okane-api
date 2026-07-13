@@ -1,8 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap');
 @import "tailwindcss";
+@import "lucide-static/font/lucide.css";
 
 @source "../../../";
 
+
+@font-face {
+	font-family: "lucide";
+	src: url("./lucide.eot?t=1747396755572"); /* IE9*/
+	src: url("./lucide.eot?t=1747396755572#iefix") format("embedded-opentype"),
+		/* IE6-IE8 */ url("./lucide.woff2?t=1747396755572") format("woff2"),
+		url("./lucide.woff?t=1747396755572") format("woff"),
+		url("./lucide.ttf?t=1747396755572") format("truetype"),
+		/* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+			url("./lucide.svg?t=1747396755572#lucide") format("svg"); /* iOS 4.1- */
+}
 
 @theme {
     --font-display: "Inter Tight", sans-serif;
