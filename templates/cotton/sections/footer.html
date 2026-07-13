@@ -1,0 +1,45 @@
+
+<div x-data="footerData()"
+    class="border-t border-border bg-card fixed bottom-0 left-0 right-0 z-50 w-full p-1">
+    <div class="grid grid-cols-4 gap-2">
+        <template x-for="link in links" :key="link.label">
+            <a :href="link.link" :class="isActiveLink(link) ? 'bg-accent/20 text-accent/80' : 'opacity-60'" class="flex flex-col items-center justify-center p-1 font-medium rounded-lg">
+                <div x-html="link.icon"></div>
+                <span class="text-xs" x-text="link.label"></span>
+            </a>
+        </template> 
+
+    </div>
+</div>
+
+<script>
+    function footerData() {
+        return {
+            links: [
+                {
+                    label: `Dashboard`,
+                    link: `{% url 'landing' %}`,
+                    icon: `<c-icon icon='layout-dashboard' />`
+                },
+                {
+                    label: `Transactions`,
+                    link: `{% url 'landing' %}/transactions`,
+                    icon: `<c-icon icon='arrow-left-right' />`
+                },
+                {
+                    label: `Reports`,
+                    link: `{% url 'landing' %}/reports`,
+                    icon: `<c-icon icon='chart-pie' />`
+                },
+                {
+                    label: `Settings`,
+                    link: `{% url 'landing' %}/settings`,
+                    icon: `<c-icon icon='settings' />`
+                }
+            ],
+            isActiveLink(link) {
+                return window.location.pathname === link.link;
+            }
+        }
+    }
+</script>
