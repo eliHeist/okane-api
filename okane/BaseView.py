@@ -29,7 +29,7 @@ def render_content(
 
 
 class AsyncLoginRequiredMixin:
-    login_url_name = "accounts:login"
+    login_url_name = "auth_login"
 
     async def ensure_authenticated(self, request: HtmxHttpRequest) -> HttpResponseBase | None:
         user = await request.auser()
