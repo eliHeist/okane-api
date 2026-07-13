@@ -1,3 +1,12 @@
-<c-vars icon="satellite" size="text-xl" />
+<c-vars icon="satellite" size="default" />
 
-<span class="lucide icon-{{ icon }} {{ size }} {% if class %}{{ class }}{% endif %}" {{ attrs }}></span>
+<div class="
+    {% if size == 'default' %}text-xl
+    {% elif size == 'lg' %}text-3xl
+    {% elif size == 'sm' %}text-lg
+    {% endif %}
+    {% if class %}{{ class }}{% endif %}
+    "
+    {{ attrs }}>
+    <span class="lucide icon-{{ icon }}"></span>
+</div>

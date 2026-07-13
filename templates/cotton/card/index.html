@@ -1,5 +1,12 @@
+<c-vars variant="default" alt="False"></c-vars>
+
 <div class="
-    rounded-xl border border-border bg-card text-black
+    rounded-corner border border-border 
+    {% if variant == 'default' %}bg-card text-black
+    {% elif variant == 'secondary' %}bg-secondary text-white/80
+    {% elif variant == 'accent' %}bg-accent/20 text-black/80
+    {% endif %}
+    {% if alt %}p-4{% else %}p-6{% endif %}
     {% if class %}
         {{ class }}
     {% endif %}

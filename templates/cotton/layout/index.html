@@ -1,7 +1,9 @@
 
 <c-layout.base>
-    <div class="min-h-screen">
-        {{ slot }}
+    <div class="h-dvh flex flex-col">
+        <div class="p-4 space-y-8 overflow-y-auto flex-1">
+            {{ slot }}
+        </div>
         <c-sections.footer />
     </div>
 </c-layout.base>

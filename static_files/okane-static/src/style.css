@@ -32,12 +32,19 @@
     --color-error: #D32F2F;    /* Strong red, pairs with white text */
     --color-warning: #ED6C02;  /* Vivid orange for alerts */
     --color-info: #0288D1;     /* Clear blue for informational states */
+
+    --radius-corner: 1rem; /* Slightly rounded corners for modern UI */
 }
 
 :root {
     font-family: var(--font-display);
     color: var(--color-black);
     background-color: var(--color-white);
+    border-color: var(--color-border);
+}
+
+div, section, article, aside, header, footer, main {
+    box-sizing: border-box;
     border-color: var(--color-border);
 }
 

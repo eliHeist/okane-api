@@ -1,11 +1,58 @@
 
-<c-layout>
-    <c-card>
-        <c-card.header>
-            <c-card.title>Dashboard</c-card.title>
-        </c-card.header>
-        <c-card.content>
-            <p>Welcome to your dashboard!</p>
-        </c-card.content>
+{% partialdef partial %}
+<c-card>
+    <c-card.title.sm>Total Balance</c-card.title.sm>
+    <div class="flex items-center">
+        <span class="text-2xl font-semibold text-accent/80">12,345.67</span>
+        <c-badge>
+            <span class="icon-trending-up"></span>
+        </c-badge>
+    </div>
+</c-card>
+
+<c-section title="Quick Actions">
+    <c-header.section>Quick Actions</c-header.section>
+    <div class="grid grid-cols-2 gap-4">
+        <a href="">
+            <c-card alt class="flex items-center justify-center gap-2">
+                <c-icon icon="plus" size="lg" />
+                <span class="text-sm">Add Transaction</span>
+            </c-card>
+        </a>
+        <a href="">
+            <c-card alt class="flex items-center justify-center gap-2">
+                <c-icon icon="plus" size="lg" />
+                <span class="text-sm">Add Transaction</span>
+            </c-card>
+        </a>
+    </div>
+</c-section>
+
+<c-section title="Previous Transactions">
+    <div class="flex items-center justify-between">
+        <c-header.section>Previous Transactions</c-header.section>
+        <a href="" class="font-semibold text-accent">View All</a>
+    </div>
+    <c-card alt>
+        <ul>
+            <li class="flex items-center gap-2">
+                <div class="grid place-content-center size-10 bg-primary/10 rounded-full">
+                    <c-icon icon="plus" size="sm" />
+                </div>
+                <div class="flex-1">
+                    <span>Blueberries</span>
+                    <div class="text-xs">Today, 10:45 AM</div>
+                </div>
+                <div>
+                    <span>+4,500</span>
+                    <c-badge variant="primary">Lunch</c-badge>
+                </div>
+            </li>
+        </ul>
     </c-card>
+</c-section>
+{% endpartialdef partial %}
+
+<c-layout>
+    {% partial partial %}
 </c-layout>

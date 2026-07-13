@@ -1,15 +1,17 @@
-<c-vars variant="default"></c-vars>
+<c-vars variant="accent"></c-vars>
 <div
     class="
-    inline-flex items-center rounded-full
-    border px-2.5 py-0.5 text-xs font-semibold
+    flex items-center justify-center rounded-full
+    border px-2.5 py-0.5 text-xs font-semibold uppercase
     transition-colors focus:outline-hidden
     focus:ring-2 focus:ring-ring focus:ring-offset-2
 
-    {% if variant == 'default' %}border-transparent bg-primary text-primary-foreground shadow-sm hover:bg-primary/80
-    {% elif variant == 'secondary' %}border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80
-    {% elif variant == 'destructive' %}border-transparent bg-destructive text-destructive-foreground shadow hover:bg-destructive/80
-    {% elif variant == 'outline' %}text-foreground
+    {% if variant == 'default' %}bg-card text-black/80
+    {% elif variant == 'accent' %}border-transparent bg-accent/20 text-white hover:bg-accent/40
+    {% elif variant == 'primary' %}bg-primary/10 text-primary
+    {% elif variant == 'error' %}bg-error/10 text-error
+    {% elif variant == 'warning' %}bg-warning/10 text-warning
+    {% elif variant == 'success' %}bg-success/10 text-success
     {% endif %}
 
     {% if class %}
